@@ -25,5 +25,5 @@ hs_err_pid*
 
 #额外忽略文件里类型,
 out
-*.iml
+target
 
