@@ -33,7 +33,7 @@ public class 十四届C {
         //输出数组
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                System.out.print(arr[i][j] + " ");
+                System.out.print(arr[i][j]);
             }
             if (i != n - 1){
                 System.out.println();
