@@ -30,7 +30,6 @@ public class 二分查找704 {
                     left = mid+1;
                 }
             }
-
             return -1;
         }
     }
