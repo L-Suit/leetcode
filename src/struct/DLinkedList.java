@@ -11,6 +11,16 @@ public class DLinkedList {
     public DLinkedList() {
     }
 
+    public DLinkedList(int value) {
+        this.value = value;
+    }
+
+    public DLinkedList(int value, DLinkedList preNode, DLinkedList nextNode) {
+        this.value = value;
+        this.preNode = preNode;
+        this.nextNode = nextNode;
+    }
+
     public DLinkedList(int key, int value) {
         this.key = key;
         this.value = value;

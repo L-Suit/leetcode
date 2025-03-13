@@ -1,3 +1,5 @@
+package struct;
+
 import struct.DLinkedList;
 import utils.Print;
 

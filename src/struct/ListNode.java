@@ -1,14 +1,16 @@
+package struct;
+
 public class ListNode {
-      int val;
-      ListNode next;
+    public int val;
+    public ListNode next;
 
     public ListNode() {
     }
 
-    ListNode(int x) {
-          val = x;
-          next = null;
-      }
+    public ListNode(int x) {
+        val = x;
+        next = null;
+    }
 
     public ListNode(int val, ListNode next) {
         this.val = val;

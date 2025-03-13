@@ -1,3 +1,5 @@
+package struct;
+
 class Node {
     int val;
     Node next;
