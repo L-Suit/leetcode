@@ -1,38 +1,64 @@
-import utils.QuickSort;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.io.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Test {
-    public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(5); // 创建一个包含5个线程的线程池
-        for (int i = 0; i < 10; i++) {
-            executor.submit(new Task(i)); // 提交任务到线程池
-        }
-        executor.shutdown(); // 关闭线程池
-    }
+    static class Task {
+        int ability;
+        int profit;
 
-    static class Task implements Runnable {
-        private final int taskId;
-
-        Task(int id) {
-            this.taskId = id;
-        }
-
-        public void run() {
-            System.out.println("Executing Task " + taskId);
+        Task(int ability, int profit) {
+            this.ability = ability;
+            this.profit = profit;
         }
     }
 
-    static class MyCallable implements Callable<Integer> {
-        @Override
-        public Integer call() throws Exception {
-            return 123; // 返回的结果
+    public static long maxProfit(List<Task> tasks, int[] workers) {
+        // 按任务能力升序排序，若能力相同取收益大的
+        tasks.sort((a, b) -> a.ability == b.ability ? b.profit - a.profit : a.ability - b.ability);
+
+        // 构建有效任务列表：能力、对应最大收益
+        TreeMap<Integer, Integer> abilityToProfit = new TreeMap<>();
+        int maxProfit = 0;
+        for (Task task : tasks) {
+            maxProfit = Math.max(maxProfit, task.profit);
+            abilityToProfit.put(task.ability, maxProfit); // 保证每个能力对应当前最大收益
         }
+
+        long totalProfit = 0;
+        for (int ability : workers) {
+            Map.Entry<Integer, Integer> entry = abilityToProfit.floorEntry(ability); // 找到不超过工人能力的最大任务
+            if (entry != null) {
+                totalProfit += entry.getValue();
+            }
+        }
+
+        return totalProfit;
     }
 
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken()); // 任务数量
+        int m = Integer.parseInt(st.nextToken()); // 工人数量
+
+        // 读入任务数据
+        List<Task> tasks = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            int ability = Integer.parseInt(st.nextToken());
+            int profit = Integer.parseInt(st.nextToken());
+            tasks.add(new Task(ability, profit));
+        }
+
+        // 读入工人数据
+        int[] workers = new int[m];
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < m; i++) {
+            workers[i] = Integer.parseInt(st.nextToken());
+        }
+
+        long result = maxProfit(tasks, workers);
+        System.out.println(result);
+    }
 }
