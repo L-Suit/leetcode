@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
+package Test;
+
 import java.util.Scanner;
 
 public class Test01 {
