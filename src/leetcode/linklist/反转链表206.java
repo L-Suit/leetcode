@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.linklist;
 
 import struct.ListNode;
 
@@ -20,8 +20,8 @@ public ListNode reverseList(ListNode head) {
         return p;
 
     }*/
-    public ListNode reverseList(ListNode head) {
-        if ( head == null) return null;
+    public ListNode reverseList0(ListNode head) {
+        if ( head == null) {return null;}
         ListNode p=null,r = head;
         ListNode ans = reverse(p,r);
 
@@ -30,11 +30,32 @@ public ListNode reverseList(ListNode head) {
     }
 
     public static ListNode reverse(ListNode head,ListNode cur){
-        if ( cur == null) return head; // 递归跳出条件
+        if ( cur == null)   {
+            return head;
+            // 递归跳出条件
+        }
         ListNode temp = cur.next;
         cur.next = head;
         head = cur;
         cur = temp;
         return  reverse(head,cur);
+    }
+
+    public ListNode reverseList(ListNode head) {
+        if (head ==null || head.next==null) {
+            return head;
+        }
+        ListNode l = null;
+        ListNode r = head;
+        ListNode temp = null;
+
+        while (r !=null){
+            temp = r.next;
+            r.next = l;
+            l =r;
+            r = temp;
+        }
+
+        return l;
     }
 }

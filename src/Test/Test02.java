@@ -28,6 +28,8 @@ public class Test02 {
         System.out.println(array);
         //包装数组转基本类型
         int[] intArray = Arrays.stream(array).mapToInt(Integer::intValue).toArray();
+        int[] array2 = Arrays.stream(array).mapToInt(Integer::intValue).toArray();
+        Integer[] array3 = Arrays.stream(array2).boxed().toArray(Integer[]::new);
 
         int[] array1 = list.stream().mapToInt(Integer::intValue).toArray();
 
