@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class 有效的字母异位词242 {
-    public boolean isAnagram(String s, String t) {
+    public boolean isAnagram0(String s, String t) {
         Map<Character,Integer> map = new HashMap();
 
 
@@ -21,6 +21,30 @@ public class 有效的字母异位词242 {
 
         for (Character ch : map.keySet()){
             if (map.get(ch) != 0){
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public boolean isAnagram(String s, String t) {
+        Map<Character,Integer> map = new HashMap<>();
+        char[] charArray = s.toCharArray();
+        char[] charArray1 = t.toCharArray();
+
+        boolean flag = false;
+        for (int i = 0; i < charArray.length; i++) {
+            char c = charArray[i];
+            map.put(c,map.getOrDefault(c,0)+1);
+        }
+
+        for (int i = 0; i < charArray1.length; i++) {
+            char c = charArray1[i];
+            map.put(c,map.getOrDefault(c,0)-1);
+        }
+
+        for (Character ch : map.keySet()){
+            if (map.get(ch) !=0){
                 return false;
             }
         }
