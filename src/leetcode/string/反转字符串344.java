@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.string;
 
 public class 反转字符串344 {
     public String reverseStr(String s, int k) {

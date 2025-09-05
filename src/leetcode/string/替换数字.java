@@ -1,9 +1,11 @@
+package leetcode.string;
 
-import java.util.*;
+import java.util.Scanner;
 
-public class Main {
-
-
+/**
+ * @author lishihao
+ */
+public class 替换数字 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -23,5 +25,8 @@ public class Main {
         System.out.println(sb);
     }
 
+    public void main(){
 
+
+    }
 }
